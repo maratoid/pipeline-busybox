@@ -5,6 +5,11 @@ pipeline:
 images:
   image: quay.io/maratoid/pipeline-busybox:latest
   pullPolicy: IfNotPresent
+pullSecrets:
+  - server: quay.io
+    username: maratoid
+    email: maratoid@gmail.com
+    password: secret/pull/quay
 service:
   name: busybox
   type: ClusterIP

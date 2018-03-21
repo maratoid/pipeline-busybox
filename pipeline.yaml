@@ -10,6 +10,12 @@ images:
   docker: docker:stable
   helm: lachlanevenson/k8s-helm:latest
   vault: byrnedo/alpine-curl
+pullSecrets:
+  - name: quay
+    server: quay.io
+    username: maratoid
+    email: maratoid@gmail.com
+    password: secret/pull/quay
 envValues:
   - envVar: BUSYBOX_SECRET_VARIABLE
     secret: secret/busybox/dummy
