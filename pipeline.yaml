@@ -1,6 +1,5 @@
 type: chart
 beforeScript:
-  image: bash:latest
   script: scripts/globalBefore.sh
   shell: /bin/bash
 afterScript:
@@ -55,7 +54,6 @@ configs:
           value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
 test:
   beforeScript:
-    image: bash:latest
     script: scripts/testBefore.sh
     shell: /bin/bash
   afterScript:
@@ -63,7 +61,6 @@ test:
     script: scripts/testAfter.sh
 stage:
   beforeScript:
-    image: bash:latest
     script: scripts/stageBefore.sh
     shell: /bin/bash
   afterScript:
@@ -71,7 +68,6 @@ stage:
     script: scripts/stageAfter.sh    
 prod: 
   beforeScript:
-    image: bash:latest
     script: scripts/prodBefore.sh
     shell: /bin/bash
   afterScript:
