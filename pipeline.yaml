@@ -6,10 +6,6 @@ beforeScript:
 afterScript:
   image: alpine:latest
   script: scripts/globalAfter.sh
-images:
-  docker: docker:stable
-  helm: lachlanevenson/k8s-helm:latest
-  vault: byrnedo/alpine-curl
 pullSecrets:
   - name: quay
     server: quay.io
