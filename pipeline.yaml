@@ -1,0 +1,86 @@
+type: chart
+beforeScript:
+  image: bash:latest
+  script: scripts/globalBefore.sh
+  shell: /bin/bash
+afterScript:
+  image: alpine:latest
+  script: scripts/globalAfter.sh
+images:
+  docker: docker:stable
+  helm: lachlanevenson/k8s-helm:latest
+  vault: byrnedo/alpine-curl
+pullSecrets:
+  - name: quay
+    server: quay.io
+    username: maratoid
+    email: maratoid@gmail.com
+    password: secret/pull/quay
+envValues:
+  - envVar: BUSYBOX_SECRET_VARIABLE
+    secret: secret/busybox/dummy
+  - envVar: BUSYBOX_PLAIN_VARIABLE
+    value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
+slack:
+  channel: #team-migrations
+rootfs:
+  - image: quay.io/maratoid/pipeline-busybox
+    buildArgs: 
+      TEST_ARG: "something not default"
+    context: pipeline-busybox
+    chart: pipeline-busybox
+    value: images.image
+configs:
+  - chart: pipeline-busybox
+    timeout: 600
+    retries: 2
+    release: pipeline-busybox
+    test: 
+      values:
+        - key: pipeline.secretval
+          secret: secret/busybox/dummy
+        - key: pipeline.plainval
+          value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
+    stage: 
+      values:
+        - key: pipeline.secretval
+          secret: secret/busybox/dummy
+        - key: pipeline.plainval
+          value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
+      tests:
+        - image: bash:latest
+          script: scripts/stageTest.sh
+          shell: /bin/bash
+    prod: 
+      values:
+        - key: pipeline.secretval
+          secret: secret/busybox/dummy
+        - key: pipeline.plainval
+          value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
+test:
+  beforeScript:
+    image: bash:latest
+    script: scripts/testBefore.sh
+    shell: /bin/bash
+  afterScript:
+    image: alpine:latest
+    script: scripts/testAfter.sh
+stage:
+  beforeScript:
+    image: bash:latest
+    script: scripts/stageBefore.sh
+    shell: /bin/bash
+  afterScript:
+    image: alpine:latest
+    script: scripts/stageAfter.sh    
+prod: 
+  beforeScript:
+    image: bash:latest
+    script: scripts/prodBefore.sh
+    shell: /bin/bash
+  afterScript:
+    image: alpine:latest
+    script: scripts/prodAfter.sh 
+  doDeploy: versionfile
+
+ 
