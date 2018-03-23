@@ -19,7 +19,7 @@ envValues:
 slack:
   channel: #team-migrations
 rootfs:
-  - image: quay.io/maratoid/pipeline-busybox
+  - image: maratoid/pipeline-busybox
     buildArgs: 
       TEST_ARG: "something not default"
     context: pipeline-busybox
