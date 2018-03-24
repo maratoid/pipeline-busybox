@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ template "fullname" . }}
   labels:
-    chart: "{{ .Chart.Name | trunc 30}}-{{ .Chart.Version | replace "+" "_" | trunc 32}}"
+    chart: "{{ .Chart.Name | trunc 30 }}-{{ .Chart.Version | replace "+" "_" | trunc 32 }}"
 spec:
   type: {{ .Values.service.type }}
   ports:
