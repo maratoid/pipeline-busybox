@@ -1,2 +1,2 @@
 # pipeline-busybox
-Pipeline test
+Pipeline test.
