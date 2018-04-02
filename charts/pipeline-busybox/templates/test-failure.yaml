@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: "{{.Release.Name}}-smoke-test"
-      image: "busybox"
+      image: "{{ .Values.images.image }}"
       command: ["false"]
   restartPolicy: Never
