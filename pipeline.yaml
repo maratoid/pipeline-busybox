@@ -33,13 +33,13 @@ configs:
     test: 
       values:
         - key: pipeline.secretval
-          secret: secret/busybox/dummy
+          secret: jobs/busybox/dummy
         - key: pipeline.plainval
           value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
     stage: 
       values:
         - key: pipeline.secretval
-          secret: secret/busybox/dummy
+          secret: jobs/busybox/dummy
         - key: pipeline.plainval
           value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
       tests:
@@ -49,7 +49,7 @@ configs:
     prod: 
       values:
         - key: pipeline.secretval
-          secret: secret/busybox/dummy
+          secret: jobs/busybox/dummy
         - key: pipeline.plainval
           value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
 test:
