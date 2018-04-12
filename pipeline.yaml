@@ -13,7 +13,7 @@ pullSecrets:
     password: secret/pull/quay
 envValues:
   - envVar: BUSYBOX_SECRET_VARIABLE
-    secret: secret/busybox/dummy
+    secret: jobs/busybox/dummy
   - envVar: BUSYBOX_PLAIN_VARIABLE
     value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
 slack:
