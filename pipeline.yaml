@@ -16,12 +16,16 @@ envValues:
     secret: jobs/busybox/dummy
   - envVar: BUSYBOX_PLAIN_VARIABLE
     value: THIS-IS-A-DUMMY-PLAIN-VAR-FOR-TESTING
+helmRepos:
+  - name: incubator
+    url: https://kubernetes-charts-incubator.storage.googleapis.com
 slack:
   channel: #team-migrations
 rootfs:
   - image: maratoid/pipeline-busybox
     buildArgs: 
-      TEST_ARG: "something not default"
+      - arg: TEST_ARG
+        value: "something not default"
     context: pipeline-busybox
     chart: pipeline-busybox
     value: images.image
