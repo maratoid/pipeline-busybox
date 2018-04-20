@@ -27,6 +27,7 @@ rootfs:
       - arg: TEST_ARG
         value: "something not default"
     context: pipeline-busybox
+    dockerContext: .
     chart: pipeline-busybox
     value: images.image
 configs:
